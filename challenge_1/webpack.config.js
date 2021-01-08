@@ -31,7 +31,12 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 
 module.exports = {
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
   mode: 'development',
+  devtool: false,
   plugins: [new webpack.ProgressPlugin()],
   devServer: {
     contentBase: './dist',
