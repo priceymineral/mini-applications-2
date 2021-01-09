@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import BpiChart from './Chart.jsx'
 
 class App extends React.Component {
   constructor (props) {
@@ -22,7 +23,10 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        React Werks
+        <BpiChart bpi={this.state.bpi}/>
+        <div>
+        --------------------------------------------------------Powered By CoinDesk
+        </div>
       </div>
     )
   }
