@@ -1833,10 +1833,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./src/client/Events.jsx":
-/*!*******************************!*\
-  !*** ./src/client/Events.jsx ***!
-  \*******************************/
+/***/ "./src/client/components/Events.jsx":
+/*!******************************************!*\
+  !*** ./src/client/components/Events.jsx ***!
+  \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1859,10 +1859,10 @@ var Events = function Events(props) {
 
 /***/ }),
 
-/***/ "./src/client/Form.jsx":
-/*!*****************************!*\
-  !*** ./src/client/Form.jsx ***!
-  \*****************************/
+/***/ "./src/client/components/Form.jsx":
+/*!****************************************!*\
+  !*** ./src/client/components/Form.jsx ***!
+  \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1952,10 +1952,10 @@ var Form = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
-/***/ "./src/client/app.jsx":
-/*!****************************!*\
-  !*** ./src/client/app.jsx ***!
-  \****************************/
+/***/ "./src/client/components/app.jsx":
+/*!***************************************!*\
+  !*** ./src/client/components/app.jsx ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1966,8 +1966,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Form_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Form.jsx */ "./src/client/Form.jsx");
-/* harmony import */ var _Events_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Events.jsx */ "./src/client/Events.jsx");
+/* harmony import */ var _Form_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Form.jsx */ "./src/client/components/Form.jsx");
+/* harmony import */ var _Events_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Events.jsx */ "./src/client/components/Events.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2029,9 +2029,9 @@ var App = /*#__PURE__*/function (_React$Component) {
     value: function fetchEventByKeyword(keyword) {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/events?q=".concat(keyword)) // 'http://localhost:3000/users?q=yahoo' for
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/events?q=".concat(keyword, "&_page=7")) // 'http://localhost:3000/users?q=yahoo' for
       .then(function (res) {
-        console.log('events: ', res.data);
+        console.log('events: ', res);
 
         _this2.setState({
           historicEvents: res.data
@@ -2081,11 +2081,11 @@ var App = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _client_app_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./client/app.jsx */ "./src/client/app.jsx");
+/* harmony import */ var _client_components_app_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./client/components/app.jsx */ "./src/client/components/app.jsx");
 
 
 
-react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_client_app_jsx__WEBPACK_IMPORTED_MODULE_2__.default, null), document.getElementById('app'));
+react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_client_components_app_jsx__WEBPACK_IMPORTED_MODULE_2__.default, null), document.getElementById('app'));
 
 /***/ }),
 

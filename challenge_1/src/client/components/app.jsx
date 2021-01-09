@@ -26,10 +26,10 @@ class App extends React.Component {
   // };
 
   fetchEventByKeyword (keyword) {
-    axios.get(`/events?q=${keyword}`)
+    axios.get(`/events?q=${keyword}&_page=7`)
     // 'http://localhost:3000/users?q=yahoo' for
       .then(res => {
-        console.log('events: ', res.data);
+        console.log('events: ', res);
         this.setState({historicEvents: res.data})
       })
       .catch(err => {
