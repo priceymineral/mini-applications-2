@@ -1,24 +1,34 @@
 import React from 'react';
-import ReactPaginate from 'react-paginate';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor (props) {
   super (props);
+    this.state = {
+      historicEvents: []
+    };
+  };
 
-  }
+  componentDidMount () {
+    axios.get('/events')
+      .then((response) => {
+        console.log('number of events length: ', response);
+      })
+      .catch((err) => {
+        console.log('error getting events: ', err);
+      })
+  };
 
   render () {
     return (
       <div>
-        Sup
+        Nothing
       </div>
     )
-  }
-}
+  };
+};
 
 export default App;
-
-// Google Scenario - Candidate
 
 // <ReactPaginate
 // previousLabel={'previous'}
