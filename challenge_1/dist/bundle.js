@@ -1851,7 +1851,7 @@ var Events = function Events(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, props.events.map(function (event, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       key: index
-    }, event.description);
+    }, "Year:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, event.date), "Description:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, event.description), "Language:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, event.lang), "Category 1:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, event.category1), "Category 2:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, event.category2), "Granularity:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, event.granularity), "/**************************************************/");
   }));
 };
 
@@ -2013,9 +2013,25 @@ var App = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(App, [{
-    key: "fetchEventByKeyword",
-    // componentDidMount () {
-    //   axios.get('/events')
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/events').then(function (res) {
+        console.log('events: ', res.data);
+
+        _this2.setState({
+          historicEvents: [res.data[0], res.data[1], res.data[2]]
+        });
+      })["catch"](function (err) {
+        console.log('error getting events: ', err);
+      });
+    }
+  }, {
+    key: "render",
+    // fetchEventByKeyword (keyword) {
+    //   axios.get(`/events?q=${keyword}`)
+    //   // 'http://localhost:3000/users?q=yahoo' for
     //     .then(res => {
     //       console.log('events: ', res.data);
     //       this.setState({historicEvents: res.data})
@@ -2024,24 +2040,8 @@ var App = /*#__PURE__*/function (_React$Component) {
     //       console.log('error getting events: ', err);
     //     })
     // };
-    value: function fetchEventByKeyword(keyword) {
-      var _this2 = this;
-
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/events?q=".concat(keyword)) // 'http://localhost:3000/users?q=yahoo' for
-      .then(function (res) {
-        console.log('events: ', res.data);
-
-        _this2.setState({
-          historicEvents: res.data
-        });
-      })["catch"](function (err) {
-        console.log('error getting events: ', err);
-      });
-    }
-  }, {
-    key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Form_jsx__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Events_jsx__WEBPACK_IMPORTED_MODULE_3__.default, {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Form_jsx__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Events_jsx__WEBPACK_IMPORTED_MODULE_3__.default, {
         events: this.state.historicEvents,
         fetchEventByKeyword: this.fetchEventByKeyword
       }));

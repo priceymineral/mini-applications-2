@@ -13,8 +13,20 @@ class App extends React.Component {
     // this.fetchEventByKeyword = this.fetchEventByKeyword.bind(this);
   };
 
-  // componentDidMount () {
-  //   axios.get('/events')
+  componentDidMount () {
+    axios.get('/events')
+      .then(res => {
+        console.log('events: ', res.data);
+        this.setState({historicEvents: [res.data[0], res.data[1], res.data[2]]})
+      })
+      .catch(err => {
+        console.log('error getting events: ', err);
+      })
+  };
+
+  // fetchEventByKeyword (keyword) {
+  //   axios.get(`/events?q=${keyword}`)
+  //   // 'http://localhost:3000/users?q=yahoo' for
   //     .then(res => {
   //       console.log('events: ', res.data);
   //       this.setState({historicEvents: res.data})
@@ -24,22 +36,11 @@ class App extends React.Component {
   //     })
   // };
 
-  fetchEventByKeyword (keyword) {
-    axios.get(`/events?q=${keyword}`)
-    // 'http://localhost:3000/users?q=yahoo' for
-      .then(res => {
-        console.log('events: ', res.data);
-        this.setState({historicEvents: res.data})
-      })
-      .catch(err => {
-        console.log('error getting events: ', err);
-      })
-  };
-
   render () {
     return (
       <div>
         <Form />
+        <div></div>
         <Events events={this.state.historicEvents} fetchEventByKeyword={this.fetchEventByKeyword} />
       </div>
     )
