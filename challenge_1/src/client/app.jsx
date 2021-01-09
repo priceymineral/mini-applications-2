@@ -10,25 +10,14 @@ class App extends React.Component {
       historicEvents: []
     };
 
-    // this.fetchEventByKeyword = this.fetchEventByKeyword.bind(this);
+    this.fetchEventByKeyword = this.fetchEventByKeyword.bind(this);
   };
 
-  componentDidMount () {
-    axios.get('/events')
-      .then(res => {
-        console.log('events: ', res.data);
-        this.setState({historicEvents: [res.data[0], res.data[1], res.data[2]]})
-      })
-      .catch(err => {
-        console.log('error getting events: ', err);
-      })
-  };
-
-  // fetchEventByKeyword (keyword) {
-  //   axios.get(`/events?q=${keyword}`)
-  //   // 'http://localhost:3000/users?q=yahoo' for
+  // componentDidMount () {
+  //   axios.get('/events')
   //     .then(res => {
   //       console.log('events: ', res.data);
+  //       // this.setState({historicEvents: [res.data[0], res.data[1], res.data[2]]})
   //       this.setState({historicEvents: res.data})
   //     })
   //     .catch(err => {
@@ -36,12 +25,24 @@ class App extends React.Component {
   //     })
   // };
 
+  fetchEventByKeyword (keyword) {
+    axios.get(`/events?q=${keyword}`)
+    // 'http://localhost:3000/users?q=yahoo' for
+      .then(res => {
+        console.log('events: ', res.data);
+        this.setState({historicEvents: res.data})
+      })
+      .catch(err => {
+        console.log('error getting events: ', err);
+      })
+  };
+
   render () {
     return (
       <div>
-        <Form />
-        <div></div>
-        <Events events={this.state.historicEvents} fetchEventByKeyword={this.fetchEventByKeyword} />
+        <Form  fetchEventByKeyword={this.fetchEventByKeyword}/>
+        <div>*******************************************************</div>
+        <Events events={this.state.historicEvents} />
       </div>
     )
   };

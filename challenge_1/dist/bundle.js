@@ -1873,6 +1873,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -1917,15 +1919,13 @@ var Form = /*#__PURE__*/function (_React$Component) {
   _createClass(Form, [{
     key: "onChange",
     value: function onChange(event) {
-      this.setState({
-        keyword: event.target.name
-      });
+      this.setState(_defineProperty({}, event.target.name, event.target.value));
     }
   }, {
     key: "onSubmit",
     value: function onSubmit(event) {
       event.preventDefault();
-      this.props.fetchEventByKeyword(this.keyword);
+      this.props.fetchEventByKeyword(this.state.keyword);
     }
   }, {
     key: "render",
@@ -1934,7 +1934,8 @@ var Form = /*#__PURE__*/function (_React$Component) {
         onSubmit: this.onSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Search By Keyword:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
-        name: "name",
+        name: "keyword",
+        value: this.state.keyword,
         onChange: this.onChange
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "submit",
@@ -2007,21 +2008,33 @@ var App = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       historicEvents: []
-    }; // this.fetchEventByKeyword = this.fetchEventByKeyword.bind(this);
-
+    };
+    _this.fetchEventByKeyword = _this.fetchEventByKeyword.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(App, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
+    key: "fetchEventByKeyword",
+    // componentDidMount () {
+    //   axios.get('/events')
+    //     .then(res => {
+    //       console.log('events: ', res.data);
+    //       // this.setState({historicEvents: [res.data[0], res.data[1], res.data[2]]})
+    //       this.setState({historicEvents: res.data})
+    //     })
+    //     .catch(err => {
+    //       console.log('error getting events: ', err);
+    //     })
+    // };
+    value: function fetchEventByKeyword(keyword) {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/events').then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/events?q=".concat(keyword)) // 'http://localhost:3000/users?q=yahoo' for
+      .then(function (res) {
         console.log('events: ', res.data);
 
         _this2.setState({
-          historicEvents: [res.data[0], res.data[1], res.data[2]]
+          historicEvents: res.data
         });
       })["catch"](function (err) {
         console.log('error getting events: ', err);
@@ -2029,21 +2042,11 @@ var App = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "render",
-    // fetchEventByKeyword (keyword) {
-    //   axios.get(`/events?q=${keyword}`)
-    //   // 'http://localhost:3000/users?q=yahoo' for
-    //     .then(res => {
-    //       console.log('events: ', res.data);
-    //       this.setState({historicEvents: res.data})
-    //     })
-    //     .catch(err => {
-    //       console.log('error getting events: ', err);
-    //     })
-    // };
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Form_jsx__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Events_jsx__WEBPACK_IMPORTED_MODULE_3__.default, {
-        events: this.state.historicEvents,
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Form_jsx__WEBPACK_IMPORTED_MODULE_2__.default, {
         fetchEventByKeyword: this.fetchEventByKeyword
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "*******************************************************"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Events_jsx__WEBPACK_IMPORTED_MODULE_3__.default, {
+        events: this.state.historicEvents
       }));
     }
   }]);

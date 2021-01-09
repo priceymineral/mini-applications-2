@@ -12,13 +12,13 @@ class Form extends React.Component {
   };
 
   onChange (event) {
-    this.setState({keyword: event.target.name})
+    this.setState({[event.target.name]: event.target.value});
 
   };
 
   onSubmit (event) {
     event.preventDefault();
-    this.props.fetchEventByKeyword(this.keyword);
+    this.props.fetchEventByKeyword(this.state.keyword);
   }
 
   render () {
@@ -27,7 +27,7 @@ class Form extends React.Component {
         <form onSubmit={this.onSubmit}>
           <label>
             Search By Keyword:
-            <input type="text" name="name" onChange={this.onChange}/>
+            <input type="text" name="keyword" value={this.state.keyword} onChange={this.onChange}/>
           </label>
           <input type="submit" value="Submit" />
         </form>
