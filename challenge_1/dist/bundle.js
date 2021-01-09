@@ -1892,8 +1892,13 @@ var App = /*#__PURE__*/function (_React$Component) {
   _createClass(App, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       axios__WEBPACK_IMPORTED_MODULE_1___default().get('/events').then(function (response) {
-        console.log('number of events length: ', response);
+        // console.log('events: ', response.data);
+        _this2.setState({
+          historicEvents: response.data
+        });
       })["catch"](function (err) {
         console.log('error getting events: ', err);
       });
@@ -1901,7 +1906,7 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Nothing t");
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Nothing");
     }
   }]);
 

@@ -12,7 +12,8 @@ class App extends React.Component {
   componentDidMount () {
     axios.get('/events')
       .then((response) => {
-        console.log('number of events length: ', response);
+        // console.log('events: ', response.data);
+        this.setState({historicEvents: response.data})
       })
       .catch((err) => {
         console.log('error getting events: ', err);
