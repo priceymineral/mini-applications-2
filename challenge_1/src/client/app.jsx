@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import Form from './Form.jsx';
+import Events from './Events.jsx';
 
 class App extends React.Component {
   constructor (props) {
@@ -7,18 +9,20 @@ class App extends React.Component {
     this.state = {
       historicEvents: []
     };
+
+    // this.fetchEventByKeyword = this.fetchEventByKeyword.bind(this);
   };
 
-  componentDidMount () {
-    axios.get('/events')
-      .then(res => {
-        console.log('events: ', res.data);
-        this.setState({historicEvents: res.data})
-      })
-      .catch(err => {
-        console.log('error getting events: ', err);
-      })
-  };
+  // componentDidMount () {
+  //   axios.get('/events')
+  //     .then(res => {
+  //       console.log('events: ', res.data);
+  //       this.setState({historicEvents: res.data})
+  //     })
+  //     .catch(err => {
+  //       console.log('error getting events: ', err);
+  //     })
+  // };
 
   fetchEventByKeyword (keyword) {
     axios.get(`/events?q=${keyword}`)
@@ -35,7 +39,8 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        Nothing
+        <Form />
+        <Events events={this.state.historicEvents} fetchEventByKeyword={this.fetchEventByKeyword} />
       </div>
     )
   };
