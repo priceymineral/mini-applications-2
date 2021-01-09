@@ -1894,10 +1894,12 @@ var App = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/events').then(function (response) {
-        // console.log('events: ', response.data);
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/events?q=Asclepieion') // 'http://localhost:3000/users?q=yahoo' for
+      .then(function (res) {
+        console.log('events: ', res.data);
+
         _this2.setState({
-          historicEvents: response.data
+          historicEvents: res.data
         });
       })["catch"](function (err) {
         console.log('error getting events: ', err);

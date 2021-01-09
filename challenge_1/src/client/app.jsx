@@ -11,11 +11,23 @@ class App extends React.Component {
 
   componentDidMount () {
     axios.get('/events')
-      .then((response) => {
-        // console.log('events: ', response.data);
-        this.setState({historicEvents: response.data})
+      .then(res => {
+        console.log('events: ', res.data);
+        this.setState({historicEvents: res.data})
       })
-      .catch((err) => {
+      .catch(err => {
+        console.log('error getting events: ', err);
+      })
+  };
+
+  fetchEventByKeyword (keyword) {
+    axios.get(`/events?q=${keyword}`)
+    // 'http://localhost:3000/users?q=yahoo' for
+      .then(res => {
+        console.log('events: ', res.data);
+        this.setState({historicEvents: res.data})
+      })
+      .catch(err => {
         console.log('error getting events: ', err);
       })
   };
