@@ -7,7 +7,6 @@ const api = require('../api/coindesk.js')
 app.use(express.static(__dirname + '/../client/dist'))
 
 app.get('/prices', (req, res) => {
-  console.log('in get')
   api.getBitcoinPrices((err, prices) => {
     if (err) {
       res.send(err)
