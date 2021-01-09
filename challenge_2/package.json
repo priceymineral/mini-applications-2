@@ -5,16 +5,18 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/server.js"
+    "start": "nodemon server/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "nodemon": "^2.0.7",
     "webpack": "^5.12.2",
     "webpack-cli": "^4.3.1"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "express": "^4.17.1"
   }
 }
