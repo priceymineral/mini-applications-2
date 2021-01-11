@@ -19,7 +19,6 @@ export default class App extends React.Component {
 }
 
 
-
 // // Bowling Scoring
 
 // Scoring Rules
