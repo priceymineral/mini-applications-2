@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const port = 3000
-
 const api = require('../api/coindesk.js')
 
 app.use(express.static(__dirname + '/../client/dist'))

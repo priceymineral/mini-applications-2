@@ -6,10 +6,10 @@ export default function BpiChart (props) {
     <div>
       <Line
         data={{
-          labels: Object.keys(props.bpi),
+          // labels: Object.keys(props.bpi),
           datasets: [{
             label: 'Bitcoin Price Index (BPI)',
-            data: Object.values(props.bpi),
+            // data: Object.values(props.bpi),
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
